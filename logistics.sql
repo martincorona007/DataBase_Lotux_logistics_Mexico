@@ -1,0 +1,117 @@
+CREATE DATABASE logistics;
+USE logistics;
+CREATE TABLE Internal_transport(
+	ID_Int_transp INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name  VARCHAR(30) NOT NULL,
+	code VARCHAR(30) NOT NULL,
+	entry_date VARCHAR(30) NOT NULL,
+	available TINYINT(1) NOT NULL
+);
+CREATE TABLE External_transport(
+	ID_Ext_transp INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	modality VARCHAR(30) NOT NULL,
+	type VARCHAR(30) NOT NULL,
+	capacity VARCHAR(30) NOT NULL,
+	speed VARCHAR(30) NOT NULL,
+	available TINYINT(1) NOT NULL
+);
+
+CREATE TABLE Warehouse(
+	ID_wh INT PRIMARY KEY  AUTO_INCREMENT NOT NULL,
+	FK_ID_client INT NOT NULL,
+	FK_ID_dt VARCHAR(30) NOT NULL,
+	deliveryDate VARCHAR(30) NOT NULL,
+	deliveryBy VARCHAR(30) NOT NULL,
+	cost VARCHAR(30) NOT NULL,
+	description TINYTEXT NOT NULL,
+	shape TINYTEXT NOT NULL,
+	size TINYTEXT NOT NULL,
+	weight TINYTEXT NOT NULL,
+	physical_features TINYTEXT NOT NULL,
+	number_units INT NOT NULL,
+	FK_ID_Int_transp  INT,
+	FK_ID_Ext_transp INT,
+	status TINYTEXT,
+	FOREIGN KEY(FK_ID_Int_transp) REFERENCES Internal_transport(ID_Int_transp),
+	FOREIGN KEY(FK_ID_Ext_transp) REFERENCES External_transport(ID_Ext_transp)
+
+
+);
+
+CREATE TABLE Client(
+	ID_client INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name VARCHAR(30) NOT NULL,
+	first_name TINYTEXT NOT NULL,
+	last_name TINYTEXT NOT NULL,
+	email TINYTEXT NOT NULL,
+	country_Code VARCHAR(30) NOT NULL,
+	phone_number VARCHAR(30) NOT NULL,
+	address TINYTEXT NOT NULL,
+	country VARCHAR(30) NOT NULL,
+	city VARCHAR(30) NOT NULL
+
+);
+CREATE TABLE Deliver_To(
+	ID_dt INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name VARCHAR(30) NOT NULL,
+	email TINYTEXT NOT NULL,
+	country_Code VARCHAR(30) NOT NULL,
+	phone_number VARCHAR(30) NOT NULL,
+	address TINYTEXT NOT NULL,
+	country VARCHAR(30) NOT NULL,
+	city VARCHAR(30) NOT NULL,
+	state VARCHAR(30) NOT NULL
+);
+
+
+
+CREATE TABLE Product(
+	ID_prod INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	FK_ID_client INT NOT NULL,
+	FK_ID_dt INT NOT NULL,
+	deliveryDate VARCHAR(30) NOT NULL,
+	deliveryBy VARCHAR(30) NOT NULL,
+	cost VARCHAR(30) NOT NULL,
+	description TINYTEXT NOT NULL,
+	shape TINYTEXT NOT NULL,
+	size TINYTEXT NOT NULL,
+	weight TINYTEXT NOT NULL,
+	physical_features TINYTEXT NOT NULL,
+	number_units INT NOT NULL,
+	FOREIGN KEY(FK_ID_client) REFERENCES  Client(ID_client),
+	FOREIGN KEY(FK_ID_dt) REFERENCES Deliver_To(ID_dt)
+);
+
+CREATE TABLE History_Warehouse(
+	ID_Hwh INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	ID_wh INT NOT NULL,
+	FK_ID_client INT NOT NULL,
+	FK_ID_dt VARCHAR(30) NOT NULL,
+	deliveryDate VARCHAR(30) NOT NULL,
+	deliveryBy VARCHAR(30) NOT NULL,
+	cost VARCHAR(30) NOT NULL,
+	description TINYTEXT NOT NULL,
+	shape TINYTEXT NOT NULL,
+	size TINYTEXT NOT NULL,
+	weight TINYTEXT NOT NULL,
+	physical_features TINYTEXT NOT NULL,
+	number_units INT NOT NULL,
+	FK_ID_Int_transp  INT,
+	FK_ID_Ext_transp INT,
+	status TINYTEXT
+
+);
+CREATE TABLE Employees(
+	ID_empl INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name VARCHAR(30) NOT NULL,
+	first_name TINYTEXT NOT NULL,
+	last_name TINYTEXT NOT NULL,
+	birth_date VARCHAR(30) NOT NULL,
+	email TINYTEXT NOT NULL,
+	country_Code VARCHAR(30) NOT NULL,
+	phone_number VARCHAR(30) NOT NULL,
+	hire_date VARCHAR(30) NOT NULL,
+	address TINYTEXT NOT NULL,
+	country VARCHAR(30) NOT NULL
+
+);
