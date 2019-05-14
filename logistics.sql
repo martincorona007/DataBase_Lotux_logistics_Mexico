@@ -304,7 +304,10 @@ INSERT INTO Warehouse(FK_ID_client, FK_ID_dt, deliveryDate, deliveryBy, cost, de
 
 CREATE TRIGGER before_Delete_To_WareHouse_Backup AFTER DELETE ON Warehouse
 FOR EACH ROW
-INSERT INTO History_Warehouse(ID_wh,FK_ID_client, FK_ID_dt, deliveryDate, deliveryBy, cost, description, shape, size, weight, physical_features, number_units,status) VALUES(OLD.ID_wh,OLD.FK_ID_client,OLD.FK_ID_dt,OLD.deliveryDate,OLD.deliveryBy,OLD.cost,OLD.description,OLD.shape,OLD.size,OLD.weight,OLD.physical_features,OLD.number_units,OLD.status);
+INSERT INTO History_Warehouse(ID_wh,FK_ID_client, FK_ID_dt, deliveryDate, deliveryBy, cost, description, shape, size, weight, physical_features, number_units,FK_ID_Int_transp,FK_ID_Ext_transp,status) VALUES(OLD.ID_wh,OLD.FK_ID_client,OLD.FK_ID_dt,OLD.deliveryDate,OLD.deliveryBy,OLD.cost,OLD.description,OLD.shape,OLD.size,OLD.weight,OLD.physical_features,OLD.number_units,OLD.FK_ID_Int_transp,OLD.FK_ID_Ext_transp,OLD.status);
+
+
+
 
 DELETE FROM Product WHERE ID_prod="3";
 DELETE FROM Product WHERE ID_prod="8";
@@ -315,7 +318,7 @@ DELETE FROM Product WHERE ID_prod="5";
 
 
 
-
+UPDATE Warehouse SET FK_ID_Int_transp="10",FK_ID_Ext_transp="12",status="warehause" WHERE ID_wh="3";
 UPDATE Warehouse SET FK_ID_Int_transp="4",FK_ID_Ext_transp="8",status="warehause" WHERE ID_wh="2";
 UPDATE Warehouse SET FK_ID_Int_transp="9",FK_ID_Ext_transp="6",status="warehause" WHERE ID_wh="4";
 UPDATE Warehouse SET FK_ID_Int_transp="15",FK_ID_Ext_transp="14",status="warehause" WHERE ID_wh="6";
@@ -323,8 +326,9 @@ UPDATE Warehouse SET FK_ID_Int_transp="15",FK_ID_Ext_transp="14",status="warehau
 
 UPDATE Warehouse SET status="delivered" WHERE ID_wh="2";
 UPDATE Warehouse SET status="delivered" WHERE ID_wh="6";
-
+UPDATE Warehouse SET status="delivered" WHERE ID_wh="3";
 
 DELETE FROM Warehouse WHERE ID_wh="2";
 DELETE FROM Warehouse WHERE ID_wh="6";
+DELETE FROM Warehouse WHERE ID_wh="3";
 
