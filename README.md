@@ -6,3 +6,6 @@ The information is obtained from:
 Manene, L. M. (21 de Junio de 2012). luismiguelmanene. Obtenido de luismiguelmanene: http://www.luismiguelmanene.com/2012/06/21/logistica-transporte-almacenaje-y-manutencion/
 
 
+![Blank Diagram](https://user-images.githubusercontent.com/31390537/57794432-3fc81900-7709-11e9-82d8-f04f2f065fcf.png)
+
+
